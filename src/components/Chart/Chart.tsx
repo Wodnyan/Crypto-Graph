@@ -7,10 +7,17 @@ import { Tooltip, LineChart, XAxis, YAxis, Line } from "recharts";
 // Ripple XRP	XRP
 
 interface CryptoData {
-    data: object[] | [];
+    data: object[] | undefined;
 }
 
 export default function CryptoChart({ data }: CryptoData) {
+    if (!data) {
+        return (
+            <>
+                <h1>No Such Symbol</h1>
+            </>
+        );
+    }
     return (
         <div className="chart-container">
             <h1>Bitcoin</h1>
