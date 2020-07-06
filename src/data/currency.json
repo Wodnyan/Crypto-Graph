@@ -1,0 +1,44 @@
+{
+    "currencies": [
+        {
+            "name": "Us Dollar",
+            "symbol": "$",
+            "code": "USD"
+        },
+        {
+            "name": "Euro",
+            "symbol": "€",
+            "code": "EUR"
+        },
+        {
+            "name": "Yen",
+            "symbol": "¥",
+            "code": "JPY"
+        },
+        {
+            "name": "Pound",
+            "symbol": "£",
+            "code": "GBP"
+        },
+        {
+            "name": "Renminbi",
+            "symbol": "¥",
+            "code": "CNH"
+        },
+        {
+            "name": "Swiss Franc",
+            "symbol": "CHf",
+            "code": "CHF"
+        },
+        {
+            "name": "Swedic Krona",
+            "symbol": "kr",
+            "code": "SEK"
+        },
+        {
+            "name": "Ron",
+            "symbol": "ron",
+            "code": "RON"
+        }
+    ]
+}
