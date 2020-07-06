@@ -1,4 +1,5 @@
 import React from "react";
+import "./style/CustomSelect.scss";
 import Dropdown from "../Dropdown/Dropdown";
 import { currency } from "../../interfaces";
 
@@ -23,20 +24,24 @@ const CustomSelect: React.FC<Props> = ({
         });
     }
     return (
-        <Dropdown dropdownTitle={selected.name}>
-            <ul className="select-list">
-                {(optionsList as Array<currency>).map((option: currency) => (
-                    <li
-                        key={option.index}
-                        data-symbol={option.code}
-                        data-name={option.name}
-                        onClick={handleClick}
-                    >
-                        {option.name}
-                    </li>
-                ))}
-            </ul>
-        </Dropdown>
+        <div className="select-container">
+            <Dropdown dropdownTitle={selected.name}>
+                <ul className="select__list">
+                    {(optionsList as Array<currency>).map(
+                        (option: currency) => (
+                            <li
+                                key={option.index}
+                                data-symbol={option.code}
+                                data-name={option.name}
+                                onClick={handleClick}
+                            >
+                                {option.name}
+                            </li>
+                        )
+                    )}
+                </ul>
+            </Dropdown>
+        </div>
     );
 };
 export default CustomSelect;

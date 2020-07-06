@@ -1,4 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import arrow from "./images/multimedia.svg";
+import "./style/Dropdown.scss";
 
 interface Dropdown {
     dropdownTitle: string;
@@ -6,7 +8,7 @@ interface Dropdown {
 }
 
 const Dropdown: React.FC<Dropdown> = ({ dropdownTitle, children }) => {
-    const [display, setDisplay] = useState(true);
+    const [display, setDisplay] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
     useEffect(() => {
         function detectClickOutside(event: MouseEvent) {
@@ -26,11 +28,14 @@ const Dropdown: React.FC<Dropdown> = ({ dropdownTitle, children }) => {
         setDisplay((prev) => !prev);
     }
     return (
-        <div className="dropdown-container" ref={dropdownRef}>
-            <div className="dropdown-title" onClick={handleClick}>
-                {dropdownTitle}
+        <div className="dropdown" ref={dropdownRef}>
+            <div className="dropdown__select" onClick={handleClick}>
+                <div className="dropdown__select-title">{dropdownTitle}</div>
+                <div className="dropdown__select-arrow">
+                    <img src={arrow} alt="arrow down" />
+                </div>
             </div>
-            {display && <div className="dropdown">{children}</div>}
+            {display && <div className="dropdown__children">{children}</div>}
         </div>
     );
 };
