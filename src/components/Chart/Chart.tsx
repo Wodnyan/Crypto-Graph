@@ -8,9 +8,10 @@ import { Tooltip, LineChart, XAxis, YAxis, Line } from "recharts";
 
 interface CryptoData {
     data: object[] | undefined;
+    title: string;
 }
 
-export default function CryptoChart({ data }: CryptoData) {
+export default function CryptoChart({ data, title }: CryptoData) {
     if (!data) {
         return (
             <>
@@ -20,7 +21,7 @@ export default function CryptoChart({ data }: CryptoData) {
     }
     return (
         <div className="chart-container">
-            <h1>Bitcoin</h1>
+            <h1>{title}</h1>
             <LineChart
                 width={700}
                 height={200}

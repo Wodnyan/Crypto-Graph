@@ -1,0 +1,27 @@
+$dropdown-width: 150px;
+.dropdown {
+    position: relative;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0px 10px 10px #d4d1d1;
+    .dropdown__children {
+        position: absolute;
+        background: #fff;
+        box-shadow: 0px 10px 10px #d4d1d1;
+        width: $dropdown-width;
+    }
+    .dropdown__select {
+        display: flex;
+        padding: 0.5em 0.7em;
+        width: $dropdown-width;
+        .dropdown__select-title {
+            margin-right: auto;
+        }
+        .dropdown__select-arrow {
+            img {
+                display: block;
+                width: 20px;
+            }
+        }
+    }
+}

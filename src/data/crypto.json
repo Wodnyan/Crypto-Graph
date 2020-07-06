@@ -1,0 +1,45 @@
+{
+    "cryptos": [
+        {
+            "name": "Bitcoin",
+            "code": "BTC"
+        },
+        {
+            "name": "Etherium",
+            "code": "ETH"
+        },
+        {
+            "name": "Cardano",
+            "code": "ADA"
+        },
+        {
+            "name": "Kyber Network",
+            "code": "KNC"
+        },
+        {
+            "name": "EOS",
+            "code": "EOS"
+        },
+        {
+            "name": "Bitcoin Cash",
+            "code": "BCH"
+        },
+        {
+            "name": "XRP",
+            "code": "XRP"
+        },
+        {
+            "name": "VeChain",
+            "code": "VET"
+        },
+        {
+            "name": "Etherium Classic",
+            "code": "ETC"
+        },
+
+        {
+            "name": "Litecoin",
+            "code": "LTC"
+        }
+    ]
+}
