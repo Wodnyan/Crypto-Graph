@@ -1,0 +1,17 @@
+*,
+*::after,
+*::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body,
+html {
+    height: 100%;
+    padding: 0.5em;
+}
+
+.search {
+    display: flex;
+    justify-content: space-evenly;
+}
