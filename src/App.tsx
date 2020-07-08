@@ -9,6 +9,7 @@ import currencyList from "./data/currency.json";
 //Components
 import CustomSelect from "./components/CustomSelect/CustomSelect";
 import CryptoChart from "./components/Chart/Chart";
+import CryptoInfo from "./components/CryptoInfo/CryptoInfo";
 
 function App() {
     const [cryptoData, setCryptoData] = useState<object[] | []>([]);
@@ -28,9 +29,13 @@ function App() {
                 console.log(Data.Data);
                 const formatedData = Data.Data.map((crypto: any) => {
                     const unixToNormalDate = new Date(crypto.time * 1000);
-                    const date = `${unixToNormalDate.getFullYear()}.${pushZeroToDateNumber(
-                        unixToNormalDate.getMonth() + 1
-                    )}.${pushZeroToDateNumber(unixToNormalDate.getDate())}`;
+                    const date = `${unixToNormalDate.getFullYear()}.
+                                  ${pushZeroToDateNumber(
+                                      unixToNormalDate.getMonth() + 1
+                                  )}.
+                                  ${pushZeroToDateNumber(
+                                      unixToNormalDate.getDate()
+                                  )}`;
                     return {
                         close: crypto.close,
                         time: date,
@@ -53,7 +58,13 @@ function App() {
                     optionsList={currencyList.currencies}
                 />
             </section>
-            <CryptoChart data={cryptoData} title={cryptoSymbol.name} />
+            <section className="crypto">
+                <CryptoChart data={cryptoData} title={cryptoSymbol.name} />
+                <CryptoInfo
+                    cryptoSymbol={cryptoSymbol.code}
+                    convertTo={currency.code}
+                />
+            </section>
         </div>
     );
 }
