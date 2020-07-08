@@ -26,7 +26,7 @@ const CustomSelect: React.FC<Props> = ({
     return (
         <div className="select-container">
             <Dropdown dropdownTitle={selected.name}>
-                <ul className="select__list">
+                <ul className="select-list">
                     {(optionsList as Array<currency>).map(
                         (option: currency) => (
                             <li
@@ -34,6 +34,7 @@ const CustomSelect: React.FC<Props> = ({
                                 data-symbol={option.code}
                                 data-name={option.name}
                                 onClick={handleClick}
+                                className="select-list__item"
                             >
                                 {option.name}
                             </li>
