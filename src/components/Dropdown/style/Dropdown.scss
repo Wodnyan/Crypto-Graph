@@ -1,10 +1,27 @@
-$dropdown-width: 150px;
+$dropdown-width: 200px;
+$dropdown-max-height: 300px;
 .dropdown {
     position: relative;
     cursor: pointer;
     z-index: 1000;
     box-shadow: 0px 10px 10px #d4d1d1;
+    .dropdown-animation-enter {
+        height: 0;
+    }
+    .dropdown-animation-enter-active {
+        height: $dropdown-max-height;
+        transition: height 0.5s ease;
+    }
+    .dropdown-animation-exit {
+        height: $dropdown-max-height;
+    }
+    .dropdown-animation-exit-active {
+        height: 0;
+        transition: height 0.5s ease;
+    }
     .dropdown__children {
+        max-height: $dropdown-max-height;
+        overflow: auto;
         position: absolute;
         background: #fff;
         box-shadow: 0px 10px 10px #d4d1d1;
@@ -12,7 +29,7 @@ $dropdown-width: 150px;
     }
     .dropdown__select {
         display: flex;
-        padding: 0.5em 0.7em;
+        padding: 0.7em;
         width: $dropdown-width;
         .dropdown__select-title {
             margin-right: auto;

@@ -1,0 +1,10 @@
+.select-list {
+    list-style: none;
+    .select-list__item {
+        padding: 0.7em;
+        &:hover {
+            background-color: #5aac44;
+            color: #f4f4f4;
+        }
+    }
+}

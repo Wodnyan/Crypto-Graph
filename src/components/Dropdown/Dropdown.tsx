@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { CSSTransition } from "react-transition-group";
 import arrow from "./images/multimedia.svg";
 import "./style/Dropdown.scss";
 
@@ -35,7 +36,14 @@ const Dropdown: React.FC<Dropdown> = ({ dropdownTitle, children }) => {
                     <img src={arrow} alt="arrow down" />
                 </div>
             </div>
-            {display && <div className="dropdown__children">{children}</div>}
+            <CSSTransition
+                in={display}
+                timeout={500}
+                classNames="dropdown-animation"
+                unmountOnExit
+            >
+                <div className="dropdown__children">{children}</div>
+            </CSSTransition>
         </div>
     );
 };
