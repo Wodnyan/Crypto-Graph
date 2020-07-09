@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { CryptoData } from "../../interfaces";
+import { netChange } from "../../_functions";
 
 interface Props {
     cryptoSymbol: string;
     convertTo: string;
-}
-
-interface CryptoData {
-    currentPrice: string;
-    netChange: string;
-}
-
-function netChange(num1: number, num2: number) {
-    return (((num2 - num1) / num1) * 100).toFixed(2).toString() + "%";
 }
 
 const CryptoInfo: React.FC<Props> = ({ cryptoSymbol, convertTo }) => {
@@ -21,8 +14,6 @@ const CryptoInfo: React.FC<Props> = ({ cryptoSymbol, convertTo }) => {
     });
     const CURRENT_PRICE = `https://min-api.cryptocompare.com/data/price?fsym=${cryptoSymbol}&tsyms=${convertTo}`;
     const CRYPTO_API = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${cryptoSymbol}&tsym=${convertTo}&limit=100`;
-    //[X] Current Price
-    //[] Change(In percentage how much does the price change)
     useEffect(() => {
         fetch(CURRENT_PRICE)
             .then((resp) => resp.json())
@@ -41,9 +32,9 @@ const CryptoInfo: React.FC<Props> = ({ cryptoSymbol, convertTo }) => {
         fetch(CRYPTO_API)
             .then((resp) => resp.json())
             .then(({ Data }) => {
-                const latest: number = Data.Data[0].close;
-                const oldest: number = Data.Data[Data.Data.length - 1].close;
-                const calcNetChange = netChange(latest, oldest);
+                const today: number = Data.Data[Data.Data.length - 2].close;
+                const yesterday: number = Data.Data[Data.Data.length - 1].close;
+                const calcNetChange = netChange(today, yesterday);
                 setCryptoData((prev) => ({
                     ...prev,
                     netChange: calcNetChange,
@@ -55,7 +46,7 @@ const CryptoInfo: React.FC<Props> = ({ cryptoSymbol, convertTo }) => {
         <>
             <h1>Current price: {cryptoData.currentPrice}</h1>
             <h1>
-                Change:{" "}
+                Change(24H):{" "}
                 <span
                     style={{
                         color:
