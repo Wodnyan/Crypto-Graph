@@ -1,12 +1,12 @@
 import React from "react";
 import "./style/CustomSelect.scss";
 import Dropdown from "../Dropdown/Dropdown";
-import { currency } from "../../interfaces";
+import { Currency } from "../../interfaces";
 
 interface Props {
-    optionsList: currency[] | [];
-    selected: currency;
-    setSelected: React.Dispatch<React.SetStateAction<currency>>;
+    optionsList: Currency[] | [];
+    selected: Currency;
+    setSelected: React.Dispatch<React.SetStateAction<Currency>>;
 }
 
 const CustomSelect: React.FC<Props> = ({
@@ -27,8 +27,8 @@ const CustomSelect: React.FC<Props> = ({
         <div className="select-container">
             <Dropdown dropdownTitle={selected.name}>
                 <ul className="select-list">
-                    {(optionsList as Array<currency>).map(
-                        (option: currency) => (
+                    {(optionsList as Array<Currency>).map(
+                        (option: Currency) => (
                             <li
                                 key={option.index}
                                 data-symbol={option.code}

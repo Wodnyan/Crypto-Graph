@@ -30,11 +30,11 @@ export default function CryptoChart({ data, title }: CryptoData) {
             >
                 {/* <CartesianGrid stroke="#f5f5f5" /> */}
                 <YAxis />
-                <XAxis dataKey="time" />
+                <XAxis dataKey="date" />
                 <Tooltip />
                 <Line
                     type="monotone"
-                    dataKey="close"
+                    dataKey="price"
                     stroke="#ff7300"
                     dot={false}
                     strokeWidth={5}
