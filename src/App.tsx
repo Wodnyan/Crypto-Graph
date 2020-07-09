@@ -24,8 +24,19 @@ function App() {
         code: "USD",
     });
     const [compare, setCompare] = useState<boolean>(false);
+    const [compareCryptoSymbol, setCompareCryptoSymbol] = useState<Currency>({
+        name: "Bitcoin",
+        code: "BTC",
+    });
+    const [compareCurrency, setCompareCurrency] = useState<Currency>({
+        name: "Us Dollar",
+        code: "USD",
+    });
+    const [compareCryptoData, setCompareCryptoData] = useState<
+        CryptoChartData[] | []
+    >([]);
     const CRYPTO_API = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${cryptoSymbol.code}&tsym=${currency.code}&limit=100`;
-
+    const COMPARE_CRYPTO_API = `https://min-api.cryptocompare.com/data/v2/histoday?fsym=${compareCryptoSymbol.code}&tsym=${compareCurrency.code}&limit=100`;
     useEffect(() => {
         const fetchData = async () => {
             const resp = await fetch(CRYPTO_API);
@@ -44,6 +55,24 @@ function App() {
         };
         fetchData();
     }, [CRYPTO_API]);
+    useEffect(() => {
+        const fetchData = async () => {
+            const resp = await fetch(COMPARE_CRYPTO_API);
+            const data = await resp.json();
+            const { Data } = data.Data;
+            const formatedData = Data.map((crypto: any) => {
+                const date = toEuropeanYearFormat(
+                    unixToNormalDate(crypto.time)
+                );
+                return {
+                    date,
+                    price: crypto.close,
+                };
+            });
+            setCompareCryptoData(formatedData);
+        };
+        fetchData();
+    }, [COMPARE_CRYPTO_API]);
     return (
         <div className="App">
             <section className="search">
@@ -60,13 +89,13 @@ function App() {
                 {compare && (
                     <>
                         <CustomSelect
-                            selected={cryptoSymbol}
-                            setSelected={setCryptoSymbol}
+                            selected={compareCryptoSymbol}
+                            setSelected={setCompareCryptoSymbol}
                             optionsList={cryptoList.cryptos}
                         />
                         <CustomSelect
-                            selected={currency}
-                            setSelected={setCurrency}
+                            selected={compareCurrency}
+                            setSelected={setCompareCurrency}
                             optionsList={currencyList.currencies}
                         />
                     </>
@@ -84,6 +113,18 @@ function App() {
                     cryptoSymbol={cryptoSymbol.code}
                     convertTo={currency.code}
                 />
+                {compare && (
+                    <>
+                        <CryptoChart
+                            data={compareCryptoData}
+                            title={compareCryptoSymbol.name}
+                        />
+                        <CryptoInfo
+                            cryptoSymbol={compareCryptoSymbol.code}
+                            convertTo={compareCurrency.code}
+                        />
+                    </>
+                )}
             </section>
         </div>
     );
